@@ -32,15 +32,33 @@ $(function() {
          * and that the URL is not empty.
          */
 
+        it('each url is defined', function() {
+
+            allFeeds.forEach(function(item){
+                expect(item.url).toBeDefined();
+                expect(item.url).not.toBe(0);
+            })
+        });         
+
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+
+        it('each name is defined', function() {
+
+            allFeeds.forEach(function(item){
+                expect(item.name).toBeDefined();
+                expect(item.name).not.toBe(0);
+            })
+        });
+
     });
 
 
     /* TODO: Write a new test suite named "The menu" */
+    describe('The menu', function() {    
 
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
@@ -48,14 +66,32 @@ $(function() {
          * hiding/showing of the menu element.
          */
 
+        it('is hidden', function() {
+            var body = $('body');
+
+            expect(body.hasClass('menu-hidden')).toBe(true);
+        });
+
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+        it('appears when clicked and is hidden when clicked again', function() {
+            var body = $('body');
+            var menuIcon = $('.menu-icon-link')
 
+            menuIcon.trigger('click');
+            expect(body.hasClass('menu-hidden')).toBe(false);
+            menuIcon.trigger('click');
+            expect(body.hasClass('menu-hidden')).not.toBe(false);          
+        });    
+             
+    });
+
+    /* TODO: Write a new test suite named "Initial Entries" */
+    describe('Initial Entries', function() {
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
@@ -69,4 +105,6 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+    });
+
 }());
