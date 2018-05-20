@@ -80,7 +80,7 @@ $(function() {
 
         it('appears when clicked and is hidden when clicked again', function() {
             var body = $('body');
-            var menuIcon = $('.menu-icon-link')
+            var menuIcon = $('.menu-icon-link');
 
             menuIcon.trigger('click');
             expect(body.hasClass('menu-hidden')).toBe(false);
@@ -99,12 +99,30 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+        beforeEach(function (done) {
+            loadFeed(function () {
+                done();
+            });
+        }); 
+                    
+        it('should there is at least a single .entry element within the .feed container.', function(done) {
+            var container = $('.feed');
+            expect(container.length).toBe(1);
+            done();   
+        }); 
 
+    });
+
+    /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        it('the content should actually changes', function() {
+        
+        }); 
+
     });
 
 }());
