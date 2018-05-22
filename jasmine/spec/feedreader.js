@@ -100,9 +100,7 @@ $(function() {
          */
 
         beforeEach(function (done) {
-            loadFeed(function () {
-                done();
-            });
+            loadFeed(0, done());
         }); 
                     
         it('should there is at least a single .entry element within the .feed container.', function(done) {
@@ -119,8 +117,26 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        it('the content should actually changes', function() {
-        
+         let content1;
+         let content2;
+
+        beforeEach(function (done) {
+            loadFeed(0, function(){
+                content1 = $('.feed a').first().text();
+                console.log(content1);
+                done();
+            });
+            
+            loadFeed(1, function() {
+                content2 = $('.feed a').first().text();
+                console.log(content2)                
+                done();
+            });;
+        }); 
+
+        it('the content should actually changes', function(done) {
+            expect(content1 !== content2).toBe(true);
+            done();
         }); 
 
     });
